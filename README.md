@@ -9,7 +9,7 @@
 <a href="https://docs.astral.sh/ruff/"><img alt="Ruff" src="https://img.shields.io/badge/Ruff-linter%20%2B%20formatter-orange"></a>
 
 A clean, modern template for deep learning projects.<br>
-Click on [<kbd>Use this template</kbd>](https://github.com/your-org/lightning-hydra-template/generate) to initialize a new repository.
+Click on [<kbd>Use this template</kbd>](https://github.com/gsoykan/ai-lightning-hydra-template/generate) to initialize a new repository.
 
 _Adapted from [ashleve/lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template), modernized with **uv**, **ruff**, and **Python 3.13**._
 
@@ -148,8 +148,8 @@ The directory structure of the new project looks like this:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone this template
-git clone <your-repo-url>
-cd <your-project>
+git clone https://github.com/gsoykan/ai-lightning-hydra-template.git
+cd ai-lightning-hydra-template
 
 # Install all dependencies (creates .venv automatically)
 uv sync --all-extras
