@@ -312,6 +312,20 @@ Override from the command line:
 uv run python src/train.py callbacks=none      # Disable all callbacks
 ```
 
+**Advanced: WandB Model Watching**
+
+For debugging and monitoring gradients, enable the WandB watch callback:
+
+```bash
+# Enable WandB model watching (logs gradients + model graph)
+uv run python src/train.py logger=wandb +callbacks.wandb_watch
+
+# Log both gradients and parameters
+uv run python src/train.py logger=wandb +callbacks.wandb_watch.log_value=all
+```
+
+Note: This adds overhead to training and is best used for debugging or monitoring experiments.
+
 ### Multi-GPU Training
 
 ```bash

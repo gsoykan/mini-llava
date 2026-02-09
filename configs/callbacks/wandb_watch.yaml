@@ -1,0 +1,8 @@
+# Advanced WandB callback for logging gradients and model graph
+# Note: This adds overhead to training, use primarily for debugging
+# Enable with: python src/train.py logger=wandb +callbacks.wandb_watch
+
+wandb_watch:
+  _target_: src.callbacks.wandb_callbacks.WatchModel
+  log_value: "gradients" # Options: "gradients", "parameters", "all"
+  log_freq: 100 # Frequency (in batches) to log histograms
