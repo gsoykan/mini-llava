@@ -3,3 +3,9 @@ defaults:
 
 accelerator: mps
 devices: 1
+gradient_clip_val: 1.0
+
+# Lightning uses torch.inference_mode() for val/test by default — on MPS this
+# selects buggy kernels for LayerNorm/avg_pool2d that produce NaN. Switch to
+# torch.no_grad() instead so we can re-enable grad inside the connector.
+inference_mode: False

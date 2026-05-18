@@ -1,0 +1,29 @@
+_target_: src.models.mini_vlm_module.MiniVLMModule
+
+vision_encoder:
+  _target_: src.models.components.vision_encoder.VisionEncoder
+  model_name: openai/clip-vit-base-patch32
+
+connector:
+  _target_: src.models.components.mlp_connector.MLPConnector
+  vision_dim: 768    # CLIP ViT-B/32 hidden size
+  llm_dim: 576       # SmolLM2-135M hidden size
+  pool_size: 3       # 49 (7×7) → 4 (2×2) tokens; set null to disable
+
+language_decoder:
+  _target_: src.models.components.language_decoder.LanguageDecoder
+  model_name: HuggingFaceTB/SmolLM2-135M-Instruct
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 5e-5
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+  _partial_: true
+  T_max: ${trainer.max_epochs}
+  eta_min: 1e-5
+
+compile: false

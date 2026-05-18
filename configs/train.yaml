@@ -13,7 +13,7 @@ defaults:
 
   # experiment configs allow for version control of specific hyperparameters
   # e.g. best hyperparameters for given model and datamodule
-  - experiment: null
+  - experiment: mini_vlm_cifar10
 
   # config for hyperparameter optimization
   - hparams_search: null

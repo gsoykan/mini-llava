@@ -1,0 +1,46 @@
+# @package _global_
+
+defaults:
+  - override /data: cifar10
+  - override /model: mini_vlm
+  - override /trainer: mps
+  - _self_
+
+tags: ["vlm", "cifar10", "stage1", "connector-only"]
+
+task_name: "mini_vlm_stage1"
+
+trainer:
+  max_epochs: 10
+  precision: 32-true
+  limit_val_batches: 10
+  limit_test_batches: 10
+  num_sanity_val_steps: 0
+
+model:
+  scheduler:
+    T_max: ${trainer.max_epochs}
+  # CIFAR-10 is essentially 10-way classification — one visual token suffices.
+  # Use CLIP's CLS token (trained as a global image summary) rather than avg-
+  # pooling 49 patches (untrained for pooling → weaker signal → LM falls back
+  # to language priors).
+  vision_encoder:
+    use_cls: true
+  connector:
+    pool_size: null
+  optimizer:
+    lr: 2e-5
+
+data:
+  # 5 000 images out of 50k — connector learns class→caption in a few epochs.
+  # Set null to use all 50k for a more thorough run.
+  max_train_samples: 5000
+  batch_size: 32
+  num_workers: 0
+
+callbacks:
+  caption_sampler:
+    _target_: src.callbacks.caption_sampler_callback.CaptionSamplerCallback
+    n_samples: 4
+    max_new_tokens: 16    # short captions — no need for 64 tokens
+    output_subdir: caption_samples
