@@ -1,7 +1,7 @@
 [project]
 name = "mini-vlm"
 version = "0.1.0"
-description = "A clean template for deep learning projects using Lightning and Hydra"
+description = "mini-VLM — LLaVA stage-1 connector training (CLIP + MLP + SmolLM2) on CIFAR-10"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.12"
