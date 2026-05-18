@@ -1,5 +1,5 @@
 [project]
-name = "lightning-hydra-template"
+name = "mini-vlm"
 version = "0.1.0"
 description = "A clean template for deep learning projects using Lightning and Hydra"
 readme = "README.md"
@@ -24,6 +24,15 @@ dependencies = [
     "rich>=14.0",
     "python-dotenv>=1.0.0",
     "omegaconf>=2.3.0",
+    "transformers>=5.8.1",
+    "datasets>=4.8.5",
+    "matplotlib>=3.10.9",
+    "ipykernel>=7.2.0",
+    "num2words>=0.5.14",
+    "ipywidgets>=8.1.8",
+    "accelerate>=1.13.0",
+    "mlx-vlm>=0.5.0",
+    "av>=17.0.1",
 ]
 
 [project.optional-dependencies]
@@ -103,6 +112,10 @@ ignore = [
     "RUF012", # mutable class attributes should be annotated with ClassVar
     "UP035",  # deprecated typing imports (some needed for compatibility)
     "RET504", # unnecessary assignment before return
+    "N806",   # uppercase vars in functions — B/N/H/W/C are PyTorch tensor-shape conventions
+    "N812",   # `import torch.nn.functional as F` — universal PyTorch idiom
+    "RUF002", # ambiguous Unicode in docstrings — `×` reads better than `x` for dimensions
+    "RUF003", # ambiguous Unicode in comments — same reason
 ]
 
 [tool.ruff.lint.per-file-ignores]

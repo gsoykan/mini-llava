@@ -1,0 +1,9 @@
+_target_: src.data.cifar10_datamodule.Cifar10DataModule
+
+vision_model_name: openai/clip-vit-base-patch32
+lm_model_name: HuggingFaceTB/SmolLM2-135M-Instruct
+max_length: 48            # chat template wraps caption with ~15 extra tokens
+max_train_samples: null   # null = all 50k; set an int to cap for quick runs
+batch_size: 32
+num_workers: 0
+pin_memory: false
